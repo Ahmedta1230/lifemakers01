@@ -1,1 +1,565 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>محطة فارقة | بصمتك اليوم</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rakkas&family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy-deep:#082234;
+    --navy:#0b3350;
+    --navy-soft:#134870;
+    --orange:#f2a54a;
+    --orange-deep:#e08a2b;
+    --cream:#fbf6ec;
+    --white:#ffffff;
+    --muted:#8fa3b3;
+    --text-dark:#0b3350;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--navy-deep);
+    color:var(--cream);
+    font-family:'Cairo',sans-serif;
+    min-height:100vh;
+    overflow-x:hidden;
+  }
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    min-height:92vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:8vh 6vw 6vh;
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(242,165,74,0.14), transparent 55%),
+      linear-gradient(180deg, var(--navy) 0%, var(--navy-deep) 100%);
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute;
+    left:0; right:0; bottom:14%;
+    height:1px;
+    background:repeating-linear-gradient(90deg, rgba(251,246,236,0.35) 0 10px, transparent 10px 22px);
+    opacity:.5;
+  }
+  .hero .mark{
+    width:64px;height:64px;border-radius:50%;
+    background:linear-gradient(155deg,var(--orange),var(--orange-deep));
+    display:flex;align-items:center;justify-content:center;
+    font-size:28px;
+    box-shadow:0 10px 30px rgba(242,165,74,.35);
+    margin-bottom:22px;
+    animation:float 4.5s ease-in-out infinite;
+  }
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+  .hero h1{
+    font-family:'Rakkas',serif;
+    font-size:clamp(2.6rem,9vw,4.6rem);
+    margin:0;
+    letter-spacing:1px;
+    color:var(--cream);
+    line-height:1.15;
+  }
+  .hero h1 span{
+    color:var(--orange);
+    position:relative;
+  }
+  .hero p.subtitle{
+    font-size:clamp(1rem,3.6vw,1.25rem);
+    color:var(--muted);
+    margin:14px 0 0;
+    max-width:34ch;
+    font-weight:500;
+  }
+  .hero .tagline{
+    margin-top:30px;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:9px 20px;
+    border:1px solid rgba(251,246,236,.25);
+    border-radius:999px;
+    font-size:.85rem;
+    color:var(--cream);
+    background:rgba(251,246,236,.04);
+  }
+  .scroll-cue{
+    position:absolute;
+    bottom:26px;
+    font-size:1.3rem;
+    color:var(--orange);
+    animation:bounce 1.8s ease-in-out infinite;
+  }
+  @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+
+  /* ---------- MAIN ---------- */
+  main{
+    background:var(--cream);
+    color:var(--text-dark);
+    border-radius:34px 34px 0 0;
+    margin-top:-30px;
+    position:relative;
+    padding:52px 6vw 70px;
+  }
+  section{max-width:560px;margin:0 auto;}
+  .eyebrow{
+    display:inline-block;
+    font-size:.78rem;
+    font-weight:700;
+    letter-spacing:.5px;
+    color:var(--orange-deep);
+    background:rgba(242,165,74,.14);
+    padding:6px 14px;
+    border-radius:999px;
+    margin-bottom:14px;
+  }
+  h2{
+    font-family:'Rakkas',serif;
+    font-size:clamp(1.7rem,5vw,2.2rem);
+    margin:0 0 8px;
+    color:var(--navy);
+  }
+  .lead{
+    color:#5b6b78;
+    font-size:1rem;
+    line-height:1.9;
+    margin:0 0 30px;
+  }
+
+  label{
+    display:block;
+    font-weight:700;
+    font-size:.92rem;
+    margin-bottom:8px;
+    color:var(--navy);
+  }
+  input[type=text]{
+    width:100%;
+    padding:14px 16px;
+    border-radius:14px;
+    border:2px solid #e4dfd2;
+    background:var(--white);
+    font-family:'Cairo',sans-serif;
+    font-size:1rem;
+    color:var(--text-dark);
+    outline:none;
+    transition:border-color .2s;
+  }
+  input[type=text]:focus{border-color:var(--orange);}
+
+  .frame-preview{
+    margin:26px 0;
+    aspect-ratio:1/1;
+    max-width:220px;
+    margin-inline:auto;
+    border-radius:50%;
+    border:3px dashed #d8cfba;
+    background:var(--white);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:2.6rem;
+    color:#cfc6b2;
+    overflow:hidden;
+    position:relative;
+  }
+  .frame-preview img{width:100%;height:100%;object-fit:cover;}
+  .frame-preview.has-photo{border-style:solid;border-color:var(--orange);}
+
+  .btn-row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:20px;}
+  button, .file-btn{
+    font-family:'Cairo',sans-serif;
+    font-weight:700;
+    font-size:.98rem;
+    border:none;
+    border-radius:14px;
+    padding:15px 22px;
+    cursor:pointer;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  button:active, .file-btn:active{transform:scale(.97);}
+  .btn-primary{
+    background:linear-gradient(155deg,var(--orange),var(--orange-deep));
+    color:var(--navy-deep);
+    box-shadow:0 10px 24px rgba(242,165,74,.35);
+    flex:1 1 180px;
+    justify-content:center;
+  }
+  .btn-secondary{
+    background:var(--white);
+    color:var(--navy);
+    border:2px solid #e4dfd2;
+    flex:1 1 180px;
+    justify-content:center;
+  }
+  input[type=file]{display:none;}
+
+  /* result */
+  .result-section{display:none;margin-top:54px;}
+  .result-section.visible{display:block;}
+  .canvas-wrap{
+    max-width:420px;
+    margin:0 auto;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 20px 50px rgba(11,51,80,.25);
+  }
+  #ticketCanvas{
+    width:100%;
+    height:auto;
+    display:block;
+  }
+  .result-buttons{margin-top:22px;}
+  .thanks{
+    text-align:center;
+    margin-top:22px;
+    color:#5b6b78;
+    font-size:.98rem;
+  }
+  .hint{
+    text-align:center;
+    font-size:.8rem;
+    color:#a89f8c;
+    margin-top:10px;
+  }
+
+  footer{
+    text-align:center;
+    padding:26px 6vw 40px;
+    background:var(--cream);
+    color:#a89f8c;
+    font-size:.8rem;
+  }
+
+  @media(max-width:420px){
+    main{padding:44px 6vw 60px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="mark">🚉</div>
+  <h1>محطة <span>فارقة</span></h1>
+  <p class="subtitle">وجودك النهاردة يصنع الأثر</p>
+  <span class="tagline">🧭 خلّي بصمتك تفضل شاهد على اليوم</span>
+  <span class="scroll-cue">⌄</span>
+</header>
+
+<main>
+
+  <section class="capture-section" id="captureSection">
+    <span class="eyebrow">تذكار المتطوع</span>
+    <h2>جهّز لافتتك</h2>
+    <p class="lead">اكتب اسمك وصوّر لحظتك النهاردة، وإحنا هنعلّق صورتك على لافتة محطة فارقة، عشان تفضل معاك ذكرى إنك كنت جزء من الأثر.</p>
+
+    <label for="nameInput">اسمك</label>
+    <input type="text" id="nameInput" placeholder="اكتب اسمك هنا" maxlength="30">
+
+    <div class="frame-preview" id="framePreview">📷</div>
+
+    <div class="btn-row">
+      <label class="file-btn btn-primary" for="cameraInput">📸 صوّر دلوقتي</label>
+      <label class="file-btn btn-secondary" for="galleryInput">🖼️ اختار من المعرض</label>
+    </div>
+    <input type="file" id="cameraInput" accept="image/*" capture="user">
+    <input type="file" id="galleryInput" accept="image/*">
+    <p class="hint">صورتك بتتعالج على جهازك بس، ومش بترفع لأي سيرفر.</p>
+  </section>
+
+  <section class="result-section" id="resultSection">
+    <span class="eyebrow">لافتتك جاهزة</span>
+    <h2>دي بصمتك اليوم</h2>
+    <div class="canvas-wrap">
+      <canvas id="ticketCanvas" width="1080" height="1350"></canvas>
+    </div>
+    <div class="btn-row result-buttons">
+      <button class="btn-primary" id="downloadBtn">⬇️ حمّل لافتتك</button>
+      <button class="btn-secondary" id="retakeBtn">🔄 غيّر الصورة</button>
+    </div>
+    <p class="thanks">شكراً إنك كنت جزء من الأثر 💛</p>
+  </section>
+
+</main>
+
+<footer>صُنعت بحب لمتطوعي محطة فارقة</footer>
+
+<script>
+  // ---- Editable event details ----
+  const EVENT_DATE = "2026/09/01";
+  const EVENT_VENUE = "ديوان المحافظة";
+
+  const nameInput = document.getElementById('nameInput');
+  const cameraInput = document.getElementById('cameraInput');
+  const galleryInput = document.getElementById('galleryInput');
+  const framePreview = document.getElementById('framePreview');
+  const captureSection = document.getElementById('captureSection');
+  const resultSection = document.getElementById('resultSection');
+  const canvas = document.getElementById('ticketCanvas');
+  const ctx = canvas.getContext('2d');
+  const downloadBtn = document.getElementById('downloadBtn');
+  const retakeBtn = document.getElementById('retakeBtn');
+
+  let currentBitmap = null;
+  const badgeNumber = String(Math.floor(1000 + Math.random() * 9000));
+
+  async function loadImageFile(file){
+    if (!file) return;
+    try{
+      if (window.createImageBitmap){
+        currentBitmap = await createImageBitmap(file, { imageOrientation: 'from-image' });
+      } else {
+        currentBitmap = await new Promise((res, rej) => {
+          const img = new Image();
+          img.onload = () => res(img);
+          img.onerror = rej;
+          img.src = URL.createObjectURL(file);
+        });
+      }
+    }catch(e){
+      currentBitmap = await new Promise((res, rej) => {
+        const img = new Image();
+        img.onload = () => res(img);
+        img.onerror = rej;
+        img.src = URL.createObjectURL(file);
+      });
+    }
+
+    framePreview.innerHTML = '';
+    framePreview.classList.add('has-photo');
+    const previewImg = document.createElement('img');
+    previewImg.src = URL.createObjectURL(file);
+    framePreview.appendChild(previewImg);
+
+    drawSignpost();
+    resultSection.classList.add('visible');
+    resultSection.scrollIntoView({ behavior:'smooth', block:'start' });
+  }
+
+  cameraInput.addEventListener('change', e => loadImageFile(e.target.files[0]));
+  galleryInput.addEventListener('change', e => loadImageFile(e.target.files[0]));
+  nameInput.addEventListener('input', () => { if (currentBitmap) drawSignpost(); });
+
+  retakeBtn.addEventListener('click', () => {
+    resultSection.classList.remove('visible');
+    captureSection.scrollIntoView({ behavior:'smooth', block:'start' });
+  });
+
+  downloadBtn.addEventListener('click', () => {
+    const link = document.createElement('a');
+    const safeName = (nameInput.value.trim() || 'بصمتي').replace(/[^\p{L}\p{N}_-]+/gu, '_');
+    link.download = `محطة_فارقة_${safeName}.png`;
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+  });
+
+  function roundRectPath(c, x, y, w, h, r){
+    c.beginPath();
+    c.moveTo(x + r, y);
+    c.arcTo(x + w, y, x + w, y + h, r);
+    c.arcTo(x + w, y + h, x, y + h, r);
+    c.arcTo(x, y + h, x, y, r);
+    c.arcTo(x, y, x + w, y, r);
+    c.closePath();
+  }
+
+  // draws a station-style directional arrow plank attached to the post at (postX, centerY)
+  function drawSignArrow(postX, centerY, width, height, direction, fillColor, textColor, text, fontSize, rotation){
+    const tip = height * 0.55;
+    ctx.save();
+    ctx.translate(postX, centerY);
+    ctx.rotate(rotation);
+
+    ctx.beginPath();
+    if (direction === 'right'){
+      ctx.moveTo(0, -height/2);
+      ctx.lineTo(width - tip, -height/2);
+      ctx.lineTo(width, 0);
+      ctx.lineTo(width - tip, height/2);
+      ctx.lineTo(0, height/2);
+    } else {
+      ctx.moveTo(0, -height/2);
+      ctx.lineTo(-(width - tip), -height/2);
+      ctx.lineTo(-width, 0);
+      ctx.lineTo(-(width - tip), height/2);
+      ctx.lineTo(0, height/2);
+    }
+    ctx.closePath();
+    ctx.fillStyle = fillColor;
+    ctx.fill();
+    ctx.lineWidth = 3;
+    ctx.strokeStyle = 'rgba(0,0,0,0.12)';
+    ctx.stroke();
+
+    ctx.fillStyle = textColor;
+    ctx.font = `700 ${fontSize}px 'Cairo', sans-serif`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    const textX = direction === 'right' ? (width - tip) / 2 : -((width - tip) / 2);
+    ctx.fillText(text, textX, 2);
+    ctx.restore();
+
+    // bolt at the post
+    ctx.save();
+    ctx.translate(postX, centerY);
+    ctx.rotate(rotation);
+    ctx.beginPath();
+    ctx.arc(direction === 'right' ? 6 : -6, 0, 6, 0, Math.PI*2);
+    ctx.fillStyle = '#3a281b';
+    ctx.fill();
+    ctx.restore();
+  }
+
+  function drawSignpost(){
+    const W = canvas.width, H = canvas.height;
+    ctx.clearRect(0, 0, W, H);
+    ctx.textBaseline = 'alphabetic';
+
+    // ---- sky background ----
+    const sky = ctx.createLinearGradient(0, 0, 0, H);
+    sky.addColorStop(0, '#123a58');
+    sky.addColorStop(0.45, '#0b3350');
+    sky.addColorStop(1, '#082234');
+    ctx.fillStyle = sky;
+    ctx.fillRect(0, 0, W, H);
+
+    // warm glow behind the photo badge
+    const glow = ctx.createRadialGradient(W/2, 250, 20, W/2, 250, 340);
+    glow.addColorStop(0, 'rgba(242,165,74,0.35)');
+    glow.addColorStop(1, 'rgba(242,165,74,0)');
+    ctx.fillStyle = glow;
+    ctx.fillRect(0, 0, W, H);
+
+    // tiny birds
+    ctx.strokeStyle = 'rgba(251,246,236,0.4)';
+    ctx.lineWidth = 3;
+    [[150,110],[210,150],[900,90],[840,140]].forEach(([bx,by]) => {
+      ctx.beginPath();
+      ctx.moveTo(bx-10, by); ctx.quadraticCurveTo(bx, by-10, bx+10, by);
+      ctx.moveTo(bx+10, by); ctx.quadraticCurveTo(bx+20, by-10, bx+30, by);
+      ctx.stroke();
+    });
+
+    // ground line
+    const groundY = H - 190;
+    ctx.fillStyle = '#061a29';
+    ctx.fillRect(0, groundY, W, H - groundY);
+    ctx.strokeStyle = 'rgba(251,246,236,0.35)';
+    ctx.lineWidth = 4;
+    ctx.setLineDash([16,14]);
+    ctx.beginPath();
+    ctx.moveTo(0, groundY + 14);
+    ctx.lineTo(W, groundY + 14);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    ctx.font = '46px sans-serif';
+    ctx.fillText('🚂', W - 150, groundY + 60);
+
+    // ---- wooden post ----
+    const postX = W/2;
+    const postTopY = 150;
+    const postW = 30;
+    const postGrad = ctx.createLinearGradient(postX - postW/2, 0, postX + postW/2, 0);
+    postGrad.addColorStop(0, '#5a3c28');
+    postGrad.addColorStop(0.5, '#7a5236');
+    postGrad.addColorStop(1, '#4a3020');
+    ctx.fillStyle = postGrad;
+    roundRectPath(ctx, postX - postW/2, postTopY, postW, groundY - postTopY + 20, 8);
+    ctx.fill();
+    // wood grain
+    ctx.strokeStyle = 'rgba(0,0,0,0.15)';
+    ctx.lineWidth = 2;
+    for (let gy = postTopY + 30; gy < groundY; gy += 46){
+      ctx.beginPath();
+      ctx.moveTo(postX - postW/2 + 5, gy);
+      ctx.lineTo(postX + postW/2 - 5, gy + 14);
+      ctx.stroke();
+    }
+
+    // ---- photo badge on top of the post ----
+    const rPhoto = 145;
+    const cx = postX, cy = 250;
+
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(cx, cy, rPhoto + 14, 0, Math.PI*2);
+    ctx.fillStyle = '#fbf6ec';
+    ctx.fill();
+    ctx.restore();
+
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(cx, cy, rPhoto, 0, Math.PI*2);
+    ctx.closePath();
+    ctx.fillStyle = '#f2e9d8';
+    ctx.fill();
+    ctx.clip();
+    if (currentBitmap){
+      const iw = currentBitmap.width, ih = currentBitmap.height;
+      const scale = Math.max((rPhoto*2)/iw, (rPhoto*2)/ih);
+      const dw = iw*scale, dh = ih*scale;
+      ctx.drawImage(currentBitmap, cx - dw/2, cy - dh/2, dw, dh);
+    }
+    ctx.restore();
+
+    ctx.lineWidth = 8;
+    ctx.strokeStyle = '#f2a54a';
+    ctx.beginPath();
+    ctx.arc(cx, cy, rPhoto, 0, Math.PI*2);
+    ctx.stroke();
+
+    // name plaque under the photo
+    const name = nameInput.value.trim() || 'متطوع من قلب الأثر';
+    ctx.font = "700 30px 'Cairo', sans-serif";
+    const nameW = Math.min(ctx.measureText(name).width + 64, W - 100);
+    roundRectPath(ctx, cx - nameW/2, cy + rPhoto - 6, nameW, 56, 16);
+    ctx.fillStyle = '#fbf6ec';
+    ctx.fill();
+    ctx.strokeStyle = '#f2a54a';
+    ctx.lineWidth = 3;
+    ctx.stroke();
+    ctx.fillStyle = '#0b3350';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(name, cx, cy + rPhoto + 22);
+    ctx.textBaseline = 'alphabetic';
+
+    // ---- directional arrow signs ----
+    drawSignArrow(postX, 590, 430, 96, 'right', '#f2a54a', '#082234', 'محطة فارقة', 40, -0.035);
+    drawSignArrow(postX, 720, 380, 82, 'left', '#134870', '#fbf6ec', 'طريق العطاء', 30, 0.02);
+    drawSignArrow(postX, 840, 470, 82, 'right', '#fbf6ec', '#0b3350', `📅 ${EVENT_DATE}    📍 ${EVENT_VENUE}`, 24, -0.015);
+    drawSignArrow(postX, 950, 330, 70, 'left', '#e08a2b', '#082234', `🎟️ بصمة رقم #${badgeNumber}`, 24, 0.025);
+
+    // top cap knob
+    ctx.beginPath();
+    ctx.arc(postX, postTopY - 6, 10, 0, Math.PI*2);
+    ctx.fillStyle = '#4a3020';
+    ctx.fill();
+
+    // ---- bottom caption ----
+    ctx.textAlign = 'center';
+    ctx.fillStyle = '#f2a54a';
+    ctx.font = "38px 'Rakkas', serif";
+    ctx.fillText('وجودك يصنع الأثر 💛', W/2, groundY + 110);
+  }
+
+  // redraw once the custom fonts are ready (in case the user has already selected a photo)
+  document.fonts.ready.then(() => { if(!currentBitmap) return; drawSignpost(); });
+</script>
+
+</body>
+</html>
 
